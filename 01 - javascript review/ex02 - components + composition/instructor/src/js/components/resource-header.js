@@ -13,3 +13,11 @@ template.innerHTML = `
       </div>
     </header>
 `
+
+class ResourceHeader extends HTMLElement {
+  // defines state & behaviour for our custom element
+}
+
+
+// makes the element available to use via HTML by mapping a name (must have hyphen) to the class.
+customElements.define('resource-header', ResourceHeader)
