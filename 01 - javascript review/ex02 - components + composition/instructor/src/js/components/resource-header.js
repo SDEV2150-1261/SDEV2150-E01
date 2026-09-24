@@ -13,4 +13,3 @@ template.innerHTML = `
       </div>
     </header>
 `
-
