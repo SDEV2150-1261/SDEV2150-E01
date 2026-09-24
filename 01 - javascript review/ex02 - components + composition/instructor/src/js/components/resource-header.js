@@ -15,9 +15,20 @@ template.innerHTML = `
 `
 
 class ResourceHeader extends HTMLElement {
-  // defines state & behaviour for our custom element
+  /* a callback is a function that is meant to be passed in as an argument *to another function*.
+       the idea being, it's something meant to fire upon something else being triggered.
+  */
+
+  // connectedCallback is the fixed name for the function that runs when custom element loads into the DOM
+  connectedCallback() { 
+    this.attachShadow({ mode: 'open' }); // attach a new shadow DOM
+    this.shadowRoot.appendChild(         // add a new node inside that shadow DOM
+      template.content.cloneNode(true)   // that, here, is a *copy* of the templated HTM
+    );
+  // in future examples, I'll be doing the 'best practices' approach of setting up the shadow DOM in the constructor
+  // (i.e. when the instance is created, *not* waiting until the instance is created AND THEN loaded into the DOM)
+  // right now, I just want to keep things incremental and manageable.
+  }
 }
 
-
-// makes the element available to use via HTML by mapping a name (must have hyphen) to the class.
-customElements.define('resource-header', ResourceHeader)
+customElements.define('resource-header', ResourceHeader);
