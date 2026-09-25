@@ -3,7 +3,7 @@ template.innerHTML = `
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
 
   <!-- Filters / Search -->
-  <aside class="col-12 col-lg-4">
+  <aside>
     <div class="card">
       <div class="card-header">
         <strong>Filters</strong>
