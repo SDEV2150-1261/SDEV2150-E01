@@ -2,7 +2,9 @@
 // That way, we don't risk permanently / irreversibly mutating the HTML.
 const template = document.createElement('template'); // an unattached DOM element/node where we'll inject our HTML
 template.innerHTML = `
-    <header class="mb-4">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+
+  <header class="mb-4">
       <div class="d-flex flex-wrap justify-content-between align-items-end gap-2">
         <div>
           <h1 class="h3 mb-1">NAIT Resource Directory</h1>

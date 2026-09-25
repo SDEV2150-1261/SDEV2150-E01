@@ -1,5 +1,10 @@
 const template = document.createElement('template');
 template.innerHTML = `
+  <!-- this is an objectively wasteful & silly way to do it (reloading the CSS in EVERY component)
+       but to keep implementation simple, it gets the point across for now.
+  -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+
   <!-- Details panel -->
   <section class="col-12 col-lg-4">
     <div class="card h-100">
