@@ -38,11 +38,16 @@ class ResourceDetails extends HTMLElement {
   // TODO: Create private field for resource data
 
   constructor() {
+    // note how we create the shadow root in the constructor
+    // (i.e. when the instance is created, *not* waiting till it's loaded into the DOM)
     super();
     this.attachShadow({ mode: 'open' });
   }
 
   connectedCallback() {
+    // we only render when the component loads into the DOM (otherwise there's nowhere to render)
+    // we have a separate render method since we want to re-render when data changes
+    // (it's being fired in here, because the initial on-load render should also happen)
     this.render();
   }
 
