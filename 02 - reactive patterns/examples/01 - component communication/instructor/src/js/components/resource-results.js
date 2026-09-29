@@ -79,18 +79,28 @@ class ResourceResults extends HTMLElement {
 
     // Here's sample HTML; I'm going to want to replace the static values with values from
     // the main.js resultsData. 
-        // <button type="button" class="list-group-item list-group-item-action">
-        //   <div class="d-flex w-100 justify-content-between">
-        //     <h2 class="h6 mb-1">IT Service Desk</h2>
-        //     <small>Tech</small>
-        //   </div>
-        //   <p class="mb-1 small text-body-secondary">Account access, Wi-Fi, BYOD support.</p>
-        //   <small class="text-body-secondary">Library</small>
-        // </button>
+
+
+    if (this.#results.length) { // 0 is a falsey number in JS, so we don't explicitly need "if x > 0"
+      const resultsHTML = this.#results.map(
+        result => `
+        <button type="button" class="list-group-item list-group-item-action" data-id="${result.id}">
+          <div class="d-flex w-100 justify-content-between">
+            <h2 class="h6 mb-1">${result.title}</h2>
+            <small>${result.category}</small>
+          </div>
+          <p class="mb-1 small text-body-secondary">${result.summary}</p>
+          <small class="text-body-secondary">${result.location}</small>
+        </button>
+        `
+      )
+    } // builds an array of HTML strings
 
     // Step 3: actually add/inject that HTML to the DOM
+    // HTML doesn't know what an array is, so let's join all the elements into one big string
+    listGroup.innerHTML = resultsHTML.join('');
+    
     this.shadowRoot.appendChild(content);
-
 
   }
 }
