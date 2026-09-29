@@ -15,41 +15,8 @@ template.innerHTML = `
       </div>
 
       <div class="list-group list-group-flush">
-        <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
-          <div class="d-flex w-100 justify-content-between">
-            <h2 class="h6 mb-1">Peer Tutoring Centre</h2>
-            <small>Academic</small>
-          </div>
-          <p class="mb-1 small text-body-secondary">Drop-in tutoring and study support.</p>
-          <small class="text-body-secondary">Building W, Room W101</small>
-        </button>
 
-        <button type="button" class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h2 class="h6 mb-1">Counselling Services</h2>
-            <small>Wellness</small>
-          </div>
-          <p class="mb-1 small text-body-secondary">Confidential mental health supports.</p>
-          <small class="text-body-secondary">Virtual and in-person</small>
-        </button>
-
-        <button type="button" class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h2 class="h6 mb-1">Student Awards and Bursaries</h2>
-            <small>Financial</small>
-          </div>
-          <p class="mb-1 small text-body-secondary">Funding options and application help.</p>
-          <small class="text-body-secondary">Student Services, Main Floor CAT</small>
-        </button>
-
-        <button type="button" class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h2 class="h6 mb-1">IT Service Desk</h2>
-            <small>Tech</small>
-          </div>
-          <p class="mb-1 small text-body-secondary">Account access, Wi-Fi, BYOD support.</p>
-          <small class="text-body-secondary">Library</small>
-        </button>
+        <!-- replace with array-generated HTML in render method -->
       </div>
     </div>
   </section>`;
@@ -102,9 +69,29 @@ class ResourceResults extends HTMLElement {
   
 
   render() {
+    // in here, I'm going to want to figure out a way to render individual results from my results data array
     // TODO: Update to render from the private results field, if it's empty, show "No results found" message
-    
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    // Step 1: collect relevant DOM elements
+    const content   = template.content.cloneNode(true)
+    const listGroup = querySelector('.list-group') // where I'll actually be rendering results into
+
+    // Step 2: compose the HTML we'll be injecting
+
+    // Here's sample HTML; I'm going to want to replace the static values with values from
+    // the main.js resultsData. 
+        // <button type="button" class="list-group-item list-group-item-action">
+        //   <div class="d-flex w-100 justify-content-between">
+        //     <h2 class="h6 mb-1">IT Service Desk</h2>
+        //     <small>Tech</small>
+        //   </div>
+        //   <p class="mb-1 small text-body-secondary">Account access, Wi-Fi, BYOD support.</p>
+        //   <small class="text-body-secondary">Library</small>
+        // </button>
+
+    // Step 3: actually add/inject that HTML to the DOM
+    this.shadowRoot.appendChild(content);
+
+
   }
 }
 
