@@ -1,3 +1,8 @@
+/* Here, we'll simply display data. When we'll finish writing this to handle that,
+   you'll notice that it contains no additional logic. It's literally just a container
+   that receives the data it's meant to display, and displays it.
+*/
+
 const template = document.createElement('template');
 // TODO: Update the template to support dynamic resource details
 template.innerHTML = `

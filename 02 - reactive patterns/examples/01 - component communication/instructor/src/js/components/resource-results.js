@@ -1,3 +1,8 @@
+/* Here, we'll define a custom event for when one of the result items is selected in the result component,
+   and handle emitting it. We'll also highlight the selected item so the UI reacts to the user's actions and 
+   stays 1:1 with how data is changing.
+*/
+
 const template = document.createElement('template');
 // TODO: Update the template to support dynamic results (NOTE: we are not altering the badge count at this time)
 template.innerHTML = `
