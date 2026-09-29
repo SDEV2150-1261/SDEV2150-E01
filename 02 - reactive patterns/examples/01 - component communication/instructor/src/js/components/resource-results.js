@@ -56,6 +56,29 @@ template.innerHTML = `
 
 class ResourceResults extends HTMLElement {
   // TODO: Create a private field for results data
+  /* !! important to understand !! -> we use private fields
+     mostly to get inside a function every time we change data,
+     because once we're inside a function, we can also fire *other*
+     behaviour. In this case, we want a re-render to occur every time
+     data changes (i.e. render the new data).
+
+     If we *didn't* have this, then whatever code outside this object
+     (e.g. ResourceResults.data = [1,2,3] in some other file) would always
+     have to remember to fire ResourceResults.render() every time. 
+
+     Now, imagine keeping track of 10 different stateful fields, and an app that
+     has 20 files all of which interact with this component. That would be terrible in general,
+     but also very bug-prone (all it takes is forgetting to manually fire that render() once, and
+     the entire app state is bugged). 
+  */   
+  #results = [];
+
+  set results(data) {
+    // I really just care about forcing data mutation to go through a setter function,
+    // since when I'm in a function, I can fire anything else too (e.g. re-rendering).
+    this.#results = data;
+    this.render();
+  }
 
   constructor() {
     super();
