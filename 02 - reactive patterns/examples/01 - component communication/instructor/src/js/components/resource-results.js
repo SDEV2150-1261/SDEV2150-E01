@@ -93,12 +93,19 @@ class ResourceResults extends HTMLElement {
           <small class="text-body-secondary">${result.location}</small>
         </button>
         `
-      )
+      );
+      // this was broken when we left it here, because if this.#results was empty,
+      // the {resultsHTML} variable never gets created.
+
+      // let's start fixing that by only trying to access that variable if there is any data,
+
+      // Step 3: actually add/inject that HTML to the DOM
+      // HTML doesn't know what an array is, so let's join all the elements into one big string
+      listGroup.innerHTML = resultsHTML.join('');
     } // builds an array of HTML strings
 
-    // Step 3: actually add/inject that HTML to the DOM
-    // HTML doesn't know what an array is, so let's join all the elements into one big string
-    listGroup.innerHTML = resultsHTML.join('');
+
+
     
     this.shadowRoot.appendChild(content);
 
