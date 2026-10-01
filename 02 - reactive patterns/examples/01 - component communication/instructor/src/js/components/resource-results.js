@@ -73,7 +73,7 @@ class ResourceResults extends HTMLElement {
     // TODO: Update to render from the private results field, if it's empty, show "No results found" message
     // Step 1: collect relevant DOM elements
     const content   = template.content.cloneNode(true)
-    const listGroup = querySelector('.list-group') // where I'll actually be rendering results into
+    const listGroup = document.querySelector('.list-group') // where I'll actually be rendering results into
 
     // Step 2: compose the HTML we'll be injecting
 
