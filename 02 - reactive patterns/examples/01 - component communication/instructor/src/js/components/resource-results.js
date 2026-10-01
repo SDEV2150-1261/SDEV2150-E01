@@ -73,7 +73,7 @@ class ResourceResults extends HTMLElement {
     // TODO: Update to render from the private results field, if it's empty, show "No results found" message
     // Step 1: collect relevant DOM elements
     const content   = template.content.cloneNode(true)
-    const listGroup = document.querySelector('.list-group') // where I'll actually be rendering results into
+    const listGroup = content.querySelector('.list-group') // where I'll actually be rendering results into
 
     // Step 2: compose the HTML we'll be injecting
 
@@ -82,6 +82,8 @@ class ResourceResults extends HTMLElement {
 
 
     if (this.#results.length) { // 0 is a falsey number in JS, so we don't explicitly need "if x > 0"
+      // for each result in the array, generate HTML to hold/display data
+      // -> pack it all inside a sneaky <button> so we can later easily highlight it when active with bootstrap classes      
       const resultsHTML = this.#results.map(
         result => `
         <button type="button" class="list-group-item list-group-item-action" data-id="${result.id}">
@@ -93,7 +95,7 @@ class ResourceResults extends HTMLElement {
           <small class="text-body-secondary">${result.location}</small>
         </button>
         `
-      );
+      )
       // this was broken when we left it here, because if this.#results was empty,
       // the {resultsHTML} variable never gets created.
 
@@ -102,6 +104,14 @@ class ResourceResults extends HTMLElement {
       // Step 3: actually add/inject that HTML to the DOM
       // HTML doesn't know what an array is, so let's join all the elements into one big string
       listGroup.innerHTML = resultsHTML.join('');
+    } else {
+      // If #results contains no items, display some default text.
+      // Always communicate to the user in UI design! An empty card might have them wondering if something's broken.
+      listGroup.innerHTML = `
+        <div class="list-group-item">
+          <p class="mb-0">No results found.</p>
+        </div>
+      `;
     } // builds an array of HTML strings
 
 
