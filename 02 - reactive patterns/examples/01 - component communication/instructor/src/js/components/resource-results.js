@@ -114,9 +114,11 @@ class ResourceResults extends HTMLElement {
       `;
     } // builds an array of HTML strings
 
+    // super important, when updating data -> ui (overwriting),
+    // always make sure to clear the HTML that's there first,
+    // otherwise you easily risk appending to existing stuff, duplicating, etc.
 
-
-    
+    this.shadowRoot.innerHTML = ''; // clear current contents first; we're fully rendering
     this.shadowRoot.appendChild(content);
 
   }
