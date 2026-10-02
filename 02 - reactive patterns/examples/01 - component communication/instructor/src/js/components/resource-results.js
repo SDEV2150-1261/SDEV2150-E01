@@ -101,7 +101,7 @@ class ResourceResults extends HTMLElement {
     this._handleResultClick = this._handleResultClick.bind(this);
     /* WTF is this and why do we need to do it? 
        -> https://dev.to/aman_singh/why-do-we-need-to-bind-methods-inside-our-class-component-s-constructor-45bn
-    
+
       If you read to the end, you'll see how we could've just used arrow functions and not needed to bind,
       but this illustrates class vs. instance behavioural differences.
     */
@@ -113,10 +113,17 @@ class ResourceResults extends HTMLElement {
   _handleResultClick(event) {
     // let's leave this empty for now and first deal with where this handler
     // needs to be called in order to wire together our event-driven behaviour
+
+    // game plan:
+    // 1. I look at the click in the Results card, and see if it came from a specific, valid result/row
+    // 2. I create a custom event w/ that row's data object as the paylod/message
+    // 3. I blast the event off
   }
 
   connectedCallback() { // <- when the component loads/attaches into the DOM...
     // TODO: Add a click event listener to handle result selection
+    // Notice how I'm listening for a click *anywhere*, rather than attaching a listener
+    // to each row.
     this.shadowRoot.addEventListener('click', this._handleResultClick);
     this.render();
   }
