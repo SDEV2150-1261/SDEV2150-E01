@@ -116,6 +116,16 @@ class ResourceResults extends HTMLElement {
 
     // game plan:
     // 1. I look at the click in the Results card, and see if it came from a specific, valid result/row
+    const button = event.target.closest('button[data-id]'); // looks at exactly what got clicked, starts going upstream till match
+    if (button) {
+      const resultID = button.getAttribute('data-id');
+      const result   = this.#results.find(result => result.id === resultID);
+      // use the data-id attribute to find the corresponding object in the array (if any).
+      // I don't want to parse values from HTML; I just want to go straight to the data source
+      // as a consistent source of truth. Once again: operate on data, cascade consequences down into
+      // 'display-only' UI.
+    }
+
     // 2. I create a custom event w/ that row's data object as the paylod/message
     // 3. I blast the event off
   }
