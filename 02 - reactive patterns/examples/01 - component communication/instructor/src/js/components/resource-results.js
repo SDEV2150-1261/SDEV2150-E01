@@ -127,7 +127,20 @@ class ResourceResults extends HTMLElement {
     }
 
     // 2. I create a custom event w/ that row's data object as the paylod/message
+    //    docs: https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/
+
+    const resultSelectedEvent = new CustomEvent(
+      'resource-selected', // *we* get to decide the event name,
+      {
+        detail:  { result }, // send matched data obj as event msg. don't pre-filter data, let receiver decide what's relevant
+        bubbles: true,       // if true, bubbles up the DOM till it finds a listener, incl. past shadow root
+                             // -> sender & receiever don't have to be directly wired together for listening to occus
+        composed: true,      // if true, events can cross shadow DOM boundary
+      }
+    );
+
     // 3. I blast the event off
+    this.dispatchEvent(resultSelectedEvent);
   }
 
   connectedCallback() { // <- when the component loads/attaches into the DOM...
