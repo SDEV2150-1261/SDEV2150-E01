@@ -87,6 +87,7 @@ class ResourceResults extends HTMLElement {
   */   
   #results = [...resultData];
 
+  // TODO: Implement setter for results data, remember to render
   set results(data) {
     // I really just care about forcing data mutation to go through a setter function,
     // since when I'm in a function, I can fire anything else too (e.g. re-rendering).
@@ -97,17 +98,26 @@ class ResourceResults extends HTMLElement {
   constructor() {
     super();
     // TODO: Bind the handleResultClick method to this instance
-
+    this._handleResultClick = this._handleResultClick.bind(this);
+    /* WTF is this and why do we need to do it? 
+       -> https://dev.to/aman_singh/why-do-we-need-to-bind-methods-inside-our-class-component-s-constructor-45bn
+    
+      If you read to the end, you'll see how we could've just used arrow functions and not needed to bind,
+      but this illustrates class vs. instance behavioural differences.
+    */
     this.attachShadow({ mode: 'open' });
   }
 
-  // TODO: Implement setter for results data, remember to render
 
   // TODO: Add an event handler method for result selection
+  _handleResultClick(event) {
+    // let's leave this empty for now and first deal with where this handler
+    // needs to be called in order to wire together our event-driven behaviour
+  }
 
-  connectedCallback() {
+  connectedCallback() { // <- when the component loads/attaches into the DOM...
     // TODO: Add a click event listener to handle result selection
-    
+    this.shadowRoot.addEventListener('click', this._handleResultClick);
     this.render();
   }
 
