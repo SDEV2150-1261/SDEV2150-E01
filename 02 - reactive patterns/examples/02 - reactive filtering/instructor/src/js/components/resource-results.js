@@ -19,6 +19,19 @@ template.innerHTML = `
 class ResourceResults extends HTMLElement {
   #results = [];
 
+  /* 
+    how does this component need to change to receive & apply filters?
+
+      - one place to store the *full, unfiltered* dataset of results (already exists: #results)
+
+      - another place to store *filtered* dataset
+
+      - this also means I have to change how I render — I should always be rendering from filtered
+        dataset, not the 'reference copy' of all results/services
+
+      - I need some method for actually applying the filters to the results
+  */
+
   constructor() {
     super();
     this._handleResultClick = this._handleResultClick.bind(this); 

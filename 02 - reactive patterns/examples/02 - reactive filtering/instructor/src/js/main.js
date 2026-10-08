@@ -60,3 +60,6 @@ const detailsComponent = document.querySelector('resource-details');
 resultsComponent.addEventListener('resource-selected', (event) => {
   detailsComponent.resource = event.detail.result;
 });
+
+// in my logic layer here, I need to do the same thing I did between results<-->details:
+// -> listen for the custom event from filters component, and alter some data property on results component accordingly

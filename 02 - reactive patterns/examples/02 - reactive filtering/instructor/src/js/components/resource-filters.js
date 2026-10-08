@@ -1,3 +1,4 @@
+// I don't need to do anything to the template, because it's just an as-is input interface.
 const template = document.createElement('template');
 template.innerHTML = `
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
@@ -53,8 +54,15 @@ class ResourceFilters extends HTMLElement {
   }
 
   connectedCallback() {
+    // I'm going to want "All" categories selected by default
     this.render();
   }
+
+  /* handlers I need:
+    - clicking Filter fires custom event w/ filter configs sent as event message/payload
+    - clicking Reset clears all filters / resets to initial state
+    - (internally) clicking a category adds that category to an array of selected categories
+  */
 
   render() {
     this.shadowRoot.appendChild(template.content.cloneNode(true));
