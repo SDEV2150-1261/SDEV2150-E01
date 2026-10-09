@@ -17,14 +17,29 @@ template.innerHTML = `
   </section>`;
 
 class ResourceResults extends HTMLElement {
-  #results = [];
+  #results          = []; // one place to store the *full, unfiltered* dataset of results (already exists: #results)
+  #filters          = {}; // a place to store my filters
+
+  #_filteredResults = []; // another place to store *filtered* dataset
+  // underscore in programming: usually communicates "don't use this directly"
+  // I will never need a setter for this; we receive 'results' & 'filters' from *external* places (needs setters),
+  // *but* we're producing the filtered results array internally
+
+  set results(data) {
+    this.#results = data;
+    this.render();
+  }
+
+  set filters(filters) { // if I have a private array, I need a setter for it
+
+    // here goes some logic for applying filters. This might get beefy, so I should think about splitting that off into its own function
+   
+    this.render() // whenever I apply new filters, I'll want to re-render
+  }
 
   /* 
     how does this component need to change to receive & apply filters?
-
-      - one place to store the *full, unfiltered* dataset of results (already exists: #results)
-
-      - another place to store *filtered* dataset
+     
 
       - this also means I have to change how I render — I should always be rendering from filtered
         dataset, not the 'reference copy' of all results/services
@@ -38,10 +53,6 @@ class ResourceResults extends HTMLElement {
     this.attachShadow({ mode: 'open' });
   }
 
-  set results(data) {
-    this.#results = data;
-    this.render();
-  }
 
   _handleResultClick(event) {
     const button = event.target.closest('button[data-id]');
@@ -78,6 +89,7 @@ class ResourceResults extends HTMLElement {
     const content = template.content.cloneNode(true)
     const listGroup = content.querySelector('.list-group');
 
+    // I'll have to change this to render from *filtered* dataset, not this.#results (the entire dataset)
 
     if (this.#results.length) {
       const resultsHTML = this.#results.map(
