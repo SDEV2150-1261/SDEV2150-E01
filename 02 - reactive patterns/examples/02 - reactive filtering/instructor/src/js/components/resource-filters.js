@@ -17,7 +17,7 @@ template.innerHTML = `
 
           <div class="mb-2"><strong>Category</strong></div>
           <div class="d-flex flex-wrap gap-2" aria-label="Category filters">
-            <button class="btn btn-sm btn-outline-primary" type="button">All</button>
+            <button class="btn btn-sm btn-outline-primary active" type="button">All</button>
             <button class="btn btn-sm btn-outline-primary" type="button">Academic</button>
             <button class="btn btn-sm btn-outline-primary" type="button">Wellness</button>
             <button class="btn btn-sm btn-outline-primary" type="button">Financial</button>
@@ -77,7 +77,7 @@ class ResourceFilters extends HTMLElement {
    
   }
 
-  disconnectCallback() { // for when component unmounts (i.e. removed from DOM)
+  disconnectedCallback() { // for when component unmounts (i.e. removed from DOM)
     this._form?.removeEventListener('submit', this._handleSubmit);
     this._resetButton?.removeEventListener('click', this._handleReset);
     this._categoryGroup?.removeEventListener('click', this._handleCategoryClick);
@@ -108,6 +108,19 @@ class ResourceFilters extends HTMLElement {
     // - clicking Filter fires custom event w/ filter configs sent as event message/payload
     event.preventDefault();
     // if I'm handling <form> submission with JS, I already know I need to do this to prevent page reload
+
+    // I can write firing the custom event before needing to know/care about actual filters data
+    const filters = {}
+    const filtersEvent = new CustomEvent(
+      'resource-filters-changed',
+      {
+        detail: filters,  // details: the message/payload sent with the event
+        bubbles: true,     
+        composed: true,
+      }
+    );
+
+    this.dispatchEvent(filtersEvent);
   }
 
   _handleReset(event) {
