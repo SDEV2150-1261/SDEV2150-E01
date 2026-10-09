@@ -108,9 +108,25 @@ class ResourceFilters extends HTMLElement {
     // - clicking Filter fires custom event w/ filter configs sent as event message/payload
     event.preventDefault();
     // if I'm handling <form> submission with JS, I already know I need to do this to prevent page reload
+  
+    // collect values to put into message payload
+    const searchQuery    = this.shadowRoot.querySelector('#q').value.trim();
+    // getting the category requires a few steps of work: find button group -> find active button -> find its text value
+    // this could technically all be one selector expression, but it'd be super grody - better to bias towards making it readable.
+    const categoryGroup  = this.shadowRoot.querySelector('[aria-label="Category filters"]')
+    const categoryButton = categoryGroup.querySelector('.active') || categoryGroup.querySelector('button');
+    const category       = categoryButton ? categoryButton.textContent.trim().toLowerCase() : 'all' // selected category text *or* 'all' as a default
 
-    // I can write firing the custom event before needing to know/care about actual filters data
-    const filters = {}
+    const openNow        = this.shadowRoot.querySelector('#openNow').checked; // will give me a boolean
+    const virtual        = this.shadowRoot.querySelector('#virtual').checked;
+
+    const filters = { // if I just list these terms in an object, the variable name will be the property name
+      searchQuery,    // searchQuery: "somevalue"
+      category,
+      openNow,
+      virtual,
+    }    
+
     const filtersEvent = new CustomEvent(
       'resource-filters-changed',
       {
