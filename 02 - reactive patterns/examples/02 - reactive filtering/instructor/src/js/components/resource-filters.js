@@ -84,7 +84,24 @@ class ResourceFilters extends HTMLElement {
   }
 
   _handleCategoryClick(event) {
+    const button = event.target.closest('button');
 
+    if (!button || !this._categoryGroup.contains(button)) {
+      // if no button could be identified, *or* the click occurred within this div but not on a button,
+      // get out right away; we don't need to do anything - efficient!
+      return;
+    }
+    // I don't need to nest everything after in an } else {}.
+    // because of the return, I only reach these lines if the check above fails!
+
+    const activeButton = this._categoryGroup.querySelector('.active');
+    if (activeButton && activeButton !== button) {
+      // if there's an active button &&and it's !==not the one that just got clicked, toggle it to inactive
+      activeButton.classList.remove('active');
+    }
+
+    // with the above checks passed, we can safely set the button that just got clicked to active
+    button.classList.add('active');
   }
 
   _handleSubmit(event) {
