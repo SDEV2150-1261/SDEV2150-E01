@@ -39,7 +39,7 @@ template.innerHTML = `
           <hr class="my-3" />
 
           <div class="d-flex gap-2">
-            <button class="btn btn-outline-secondary" type="button">Reset</button>
+            <button id="reset" class="btn btn-outline-secondary" type="button">Reset</button>
             <button class="btn btn-primary" type="submit">Filter</button>
           </div>
         </form>
@@ -61,20 +61,30 @@ class ResourceFilters extends HTMLElement {
 
   connectedCallback() { // for when component mounts (i.e. loads into DOM)
     // I'm going to want "All" categories selected by default
-    this.render();
-    // I'm going to need a click listener for those category clicks
+    this.render(); // notice that I'm rendering the HTML *before* adding listeners
     
     // for 'internal events', i.e. don't need to care about DOM outside this component,
     // we *could* put those in the constructor as long as we were applying our HTML there too.
+    this._form = this.shadowRoot.querySelector('#frm-filter');
+    this._form.addEventListener('submit', this._handleSubmit);
+
+    this._resetButton = this.shadowRoot.querySelector('#reset');
+    this._resetButton.addEventListener('click', this._handleReset);
+
+    // objectively gross, but just to demo CSS selectors a bit more:
+    this._categoryGroup = this.shadowRoot.querySelector('[aria-label="Category filters"]')
+    this._categoryGroup.addEventListener('click', this._handleCategoryClick);
+   
   }
 
   disconnectCallback() { // for when component unmounts (i.e. removed from DOM)
-    // if I'm setting up listeners when the component loads/attaches into the DOM,
-    // I should clean up those listeners here (so they don't linger if component unloads)
+    this._form?.removeEventListener('submit', this._handleSubmit);
+    this._resetButton?.removeEventListener('click', this._handleReset);
+    this._categoryGroup?.removeEventListener('click', this._handleCategoryClick);
   }
 
   _handleCategoryClick(event) {
-    // - (internally) clicking a category adds that category to an array of selected categories   
+
   }
 
   _handleSubmit(event) {
