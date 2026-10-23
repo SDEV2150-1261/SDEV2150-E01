@@ -15,9 +15,19 @@ function App() {
   return (
     <>
       <Header />
-      <Filters />
-      <Results />
-      <Details />
+
+      {/* breakpoints, just like in bootstrap: a window wider than "lg" (1024px) will create 3 columns; anything below, 1 column */}
+      <div className="flex flex-col lg:grid lg:grid-cols-3 lg:items-stretch">
+        <div className="w-full">
+          <Filters />
+        </div>
+        <div className="w-full">
+          <Results />
+        </div>
+        <div className="w-full">
+          <Details />
+        </div>
+      </div>
     </>
   )
 }
