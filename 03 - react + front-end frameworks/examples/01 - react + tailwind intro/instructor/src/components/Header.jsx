@@ -13,7 +13,10 @@ export default function Header({ tagline }) {
         <div>
           <h1 className="text-xl font-semibold text-sky-600">NAIT Resource Directory</h1>
           <p className="text-sm text-gray-500">
-            {tagline ? tagline : "Find student support services, labs, and campus resources."}
+            {/* If the condition is the same as the truthy case (e.g. tagline ? tagline : "falsey"), you can also just chain with OR (||):
+              x || y   -> x OR y -> (x if x is truthy) (else y)
+            */}
+            {tagline || "Find student support services, labs, and campus resources."}
           </p>
         </div>
       </div>
