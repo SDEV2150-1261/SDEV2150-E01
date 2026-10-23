@@ -13,11 +13,11 @@ function App() {
   // we can use the fragment, a placeholder empty node in React:
   //   <>   </>
   return (
-    <>
+    <div className="p-6">
       <Header />
 
       {/* breakpoints, just like in bootstrap: a window wider than "lg" (1024px) will create 3 columns; anything below, 1 column */}
-      <div className="flex flex-col lg:grid lg:grid-cols-3 lg:items-stretch">
+      <div className="flex flex-col lg:grid lg:grid-cols-3 lg:items-stretch gap-x-6">
         <div className="w-full">
           <Filters />
         </div>
@@ -28,7 +28,7 @@ function App() {
           <Details />
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
