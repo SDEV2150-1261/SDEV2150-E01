@@ -1,4 +1,13 @@
-export default function Header() {
+/* You can pass props to a component either with:
+    a) one variable that collects all arguments, e.g. Header(props)     -> accessed via props.tagline
+    b) destructuring (each prop named)           e.g. Header({tagline}) -> as-is
+
+   I recommend only ever using b), because that way someone can tell exactly what inputs your component expects.
+   In a), they have to go looking in EVERY LINE of the component to see if there is a props.{something}, and keep mental track of it all.
+*/
+export default function Header({ tagline }) {
+
+  // tagline = "Find student support services, labs, and campus resources.";
 
   return (
     <header className="mb-4">
@@ -6,7 +15,7 @@ export default function Header() {
         <div>
           <h1 className="text-xl font-semibold text-sky-600">NAIT Resource Directory</h1>
           <p className="text-sm text-gray-500">
-            Find student support services, labs, and campus resources.
+            {tagline}
           </p>
         </div>
       </div>

@@ -14,7 +14,7 @@ function App() {
   //   <>   </>
   return (
     <div className="p-6">
-      <Header />
+      <Header tagline="there is a sky outside."/>
 
       {/* breakpoints, just like in bootstrap: a window wider than "lg" (1024px) will create 3 columns; anything below, 1 column */}
       <div className="flex flex-col lg:grid lg:grid-cols-3 lg:items-stretch gap-x-6">
