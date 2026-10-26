@@ -1,5 +1,5 @@
 // src/components/Results.jsx
-export default function Results() {
+export default function Results({ resources }) {
   return (
     <section className="h-full mb-4">
       <div className="h-full rounded border border-gray-200 bg-white shadow-sm">
@@ -11,7 +11,7 @@ export default function Results() {
         </div>
 
         <ul className="divide-y divide-gray-200">
-          <li
+          {/* <li
             className="w-full text-left bg-blue-600 text-white px-4 py-3 focus:outline-none"
             aria-current="true"
           >
@@ -25,28 +25,9 @@ export default function Results() {
             <small className="mt-1 block text-xs text-blue-100">
               Building W, Room W101
             </small>
-          </li>
+          </li> */}
           {/* INFO: Could just copy/paste individual buttons, but this is more maintainable */}
-          {[
-            {
-              title: 'Counselling Services',
-              category: 'Wellness',
-              summary: 'Confidential mental health supports.',
-              location: 'Virtual and in-person',
-            },
-            {
-              title: 'Student Awards and Bursaries',
-              category: 'Financial',
-              summary: 'Funding options and application help.',
-              location: 'Student Services, Main Floor CAT',
-            },
-            {
-              title: 'IT Service Desk',
-              category: 'Tech',
-              summary: 'Account access, Wi-Fi, BYOD support.',
-              location: 'Library',
-            },
-          ].map((item) => (
+          {resources.map((item) => (
             <li
               key={item.title}
               className="w-full text-left px-4 py-3 text-gray-900 hover:bg-gray-50"
