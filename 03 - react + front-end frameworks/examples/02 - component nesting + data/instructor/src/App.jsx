@@ -4,7 +4,7 @@ import Results from './components/Results';
 import Details from './components/Details';
 import './App.css';
 
-import './data/resources';
+import { resources } from './data/resources';
 
 
 function App() {
