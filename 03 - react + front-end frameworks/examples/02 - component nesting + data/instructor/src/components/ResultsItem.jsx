@@ -1,4 +1,10 @@
-export default function ResultsItem({ title, category, summary, location }) {
+export default function ResultsItem({
+  title,
+  category,
+  summary,
+  location,
+  children,
+}) {
 	// NOTE: we don't get access to a {key} prop even if we set one when the component is used;
 	//       the key is just for React's internal bookkeeping.
 
@@ -9,6 +15,8 @@ export default function ResultsItem({ title, category, summary, location }) {
 			<h2 className="text-sm font-semibold">{title}</h2>
 			<small className="text-xs text-gray-500">{category}</small>
 		</div>
+    {children}
+
 		<p className="mt-1 text-xs text-gray-500">{summary}</p>
 		<small className="mt-1 block text-xs text-gray-500">
 			{location}

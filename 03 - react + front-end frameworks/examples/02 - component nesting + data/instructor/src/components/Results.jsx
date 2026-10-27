@@ -58,7 +58,15 @@ export default function Results({ resources }) {
               category={item.category}
               summary={item.summary}
               location={item.location}
-            />
+            >
+              {/* Why not just put this inside ResultsItem instead of overcomplicating it?
+                  Let's say, for example, I wanted to reuse Results/ResultsItem in different places,
+                  but this was the only place I wanted to show these badges.
+              */}
+              <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-800">
+                open now
+              </span>
+            </ResultsItem>
           ))}
         </ul>
       </div>
