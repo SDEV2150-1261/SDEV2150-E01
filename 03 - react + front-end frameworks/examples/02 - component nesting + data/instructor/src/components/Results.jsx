@@ -63,9 +63,10 @@ export default function Results({ resources }) {
                   Let's say, for example, I wanted to reuse Results/ResultsItem in different places,
                   but this was the only place I wanted to show these badges.
               */}
+              {item.openNow &&
               <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-800">
                 open now
-              </span>
+              </span>}
             </ResultsItem>
           ))}
         </ul>
