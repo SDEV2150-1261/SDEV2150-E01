@@ -42,9 +42,17 @@ export default function Results({ resources }) {
             </small>
           </li> */}
           {/* INFO: Could just copy/paste individual buttons, but this is more maintainable */}
+          {/* Changing key to ID because it should be an ID-like field. 
+          
+              You can remove the key attribute entirely and look in the JS console to see what React says.
+              It won't brick your application/break rendering, but things will get messy when you try to filter, 
+              reorder, etc. list elements.
+              
+              key attribute is necessary to give a unique ID to teach list element React has to keep track of.
+          */}
           {resources.map((item) => (
             <li
-              key={item.title}
+              key={item.id}
               className="w-full text-left px-4 py-3 text-gray-900 hover:bg-gray-50"
             >
               <div className="flex items-start justify-between gap-3">
