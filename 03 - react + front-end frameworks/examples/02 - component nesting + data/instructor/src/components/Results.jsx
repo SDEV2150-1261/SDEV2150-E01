@@ -1,4 +1,6 @@
 // src/components/Results.jsx
+import ResultsItem from "./ResultsItem";
+
 export default function Results({ resources }) {
   return (
     <section className="h-full mb-4">
@@ -51,19 +53,28 @@ export default function Results({ resources }) {
               key attribute is necessary to give a unique ID to teach list element React has to keep track of.
           */}
           {resources.map((item) => (
-            <li
+            <ResultsItem
               key={item.id}
-              className="w-full text-left px-4 py-3 text-gray-900 hover:bg-gray-50"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <h2 className="text-sm font-semibold">{item.title}</h2>
-                <small className="text-xs text-gray-500">{item.category}</small>
-              </div>
-              <p className="mt-1 text-xs text-gray-500">{item.summary}</p>
-              <small className="mt-1 block text-xs text-gray-500">
-                {item.location}
-              </small>
-            </li>
+              title={item.title}
+              category={item.category}
+              summary={item.summary}
+              location={item.location}
+            />
+
+
+            // <li
+            //   key={item.id}
+            //   className="w-full text-left px-4 py-3 text-gray-900 hover:bg-gray-50"
+            // >
+            //   <div className="flex items-start justify-between gap-3">
+            //     <h2 className="text-sm font-semibold">{item.title}</h2>
+            //     <small className="text-xs text-gray-500">{item.category}</small>
+            //   </div>
+            //   <p className="mt-1 text-xs text-gray-500">{item.summary}</p>
+            //   <small className="mt-1 block text-xs text-gray-500">
+            //     {item.location}
+            //   </small>
+            // </li>
           ))}
         </ul>
       </div>
