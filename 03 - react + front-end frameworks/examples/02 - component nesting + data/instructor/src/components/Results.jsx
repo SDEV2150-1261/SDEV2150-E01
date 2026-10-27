@@ -6,7 +6,22 @@ export default function Results({ resources }) {
         <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3">
           <strong className="text-sm text-gray-900">Results</strong>
           <span className="rounded-full bg-gray-200 px-2.5 py-0.5 text-xs font-semibold text-gray-700">
-            4
+            {/* 
+              If I care about rendering something specific for success and failure cases, I'll use a ternary:
+                {condition ? <Component /> : "Condition was not met; here's default text."
+                
+              If I *don't care* about rendering anything for a failure case, I can use the && AND operator,
+              and only deal with the success condition:
+                {condition && <Component />}
+
+              In the example below, I'm safeguarding against e.g. getting {null} instead of an array,
+              and the entire component crashing because null.length doesn't exist.
+            */}
+            {resources && resources.length}
+
+            {/* Bonus: If the success condition is the same as what should be rendered if true, you can use the || OR operator:
+                objectOrNull || "Sorry, object was null."
+            */}
           </span>
         </div>
 
