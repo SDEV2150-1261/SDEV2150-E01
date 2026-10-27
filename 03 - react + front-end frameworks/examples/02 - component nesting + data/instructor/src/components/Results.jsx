@@ -28,22 +28,6 @@ export default function Results({ resources }) {
         </div>
 
         <ul className="divide-y divide-gray-200">
-          {/* <li
-            className="w-full text-left bg-blue-600 text-white px-4 py-3 focus:outline-none"
-            aria-current="true"
-          >
-            <div className="flex items-start justify-between gap-3">
-              <h2 className="text-sm font-semibold">Peer Tutoring Centre</h2>
-              <small className="text-xs text-blue-100">Academic</small>
-            </div>
-            <p className="mt-1 text-xs text-blue-100">
-              Drop-in tutoring and study support.
-            </p>
-            <small className="mt-1 block text-xs text-blue-100">
-              Building W, Room W101
-            </small>
-          </li> */}
-          {/* INFO: Could just copy/paste individual buttons, but this is more maintainable */}
           {/* Changing key to ID because it should be an ID-like field. 
           
               You can remove the key attribute entirely and look in the JS console to see what React says.
