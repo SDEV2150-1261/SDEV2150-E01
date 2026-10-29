@@ -19,7 +19,11 @@ export default function Results({ resources }) {
               In the example below, I'm safeguarding against e.g. getting {null} instead of an array,
               and the entire component crashing because null.length doesn't exist.
             */}
-            {resources && resources.length}
+            {resources?.length } 
+            {/* replaces {resources && resources.length}
+              thing?.attribute   -> "if thing is non-null, check its attribute"
+              -> in either way of writing this, we just don't want to crash the app trying to read .length of null
+            */}
 
             {/* Bonus: If the success condition is the same as what should be rendered if true, you can use the || OR operator:
                 objectOrNull || "Sorry, object was null."
