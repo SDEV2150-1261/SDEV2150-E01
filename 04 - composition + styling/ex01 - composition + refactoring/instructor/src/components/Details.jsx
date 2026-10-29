@@ -1,11 +1,10 @@
 // src/components/Details.jsx
+import Card from './ui/Card';
+
+
 export default function Details() {
   return (
-    <section className="h-full">
-      <div className="h-full rounded border border-gray-200 bg-white shadow-sm">
-        <div className="border-b border-gray-200 px-4 py-3">
-          <strong className="text-sm text-gray-900">Details</strong>
-        </div>
+    <Card title="Details">
 
         <div className="space-y-3 p-4">
           <div>
@@ -42,7 +41,7 @@ export default function Details() {
             Open map
           </button>
         </div>
-      </div>
-    </section>
+
+    </Card>
   );
 }
