@@ -1,6 +1,13 @@
 export default function PageLayout({ header, children }) { //({ header, left, middle, right }) {
+  
+  // with tailwind, we'd specify exact colours, but with DaisyUI, we have base colours, primary colours etc.
+  // that will be consistent across a theme.
+  
+  // DaisyUI reads data-theme attribute to assign styling. 
+  // Flipping this to dark, our cards and header are still a clashing blinding white because they're fixed colours right now
+  // rather than base-n00 relative colours in the DaisyUI theme.
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div data-theme="dark" className="min-h-screen bg-base-200">
       <header className="border-b border-sky-600 bg-white px-6 py-4">
         {header}
       </header>
