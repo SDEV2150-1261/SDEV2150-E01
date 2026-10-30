@@ -7,7 +7,7 @@ export default function PageLayout({ header, children }) { //({ header, left, mi
   // Flipping this to dark, our cards and header are still a clashing blinding white because they're fixed colours right now
   // rather than base-n00 relative colours in the DaisyUI theme.
   return (
-    <div data-theme="dark" className="min-h-screen bg-base-200">
+    <div data-theme="light" className="min-h-screen bg-base-200">
       <header className="border-b border-sky-600 bg-white px-6 py-4">
         {header}
       </header>
