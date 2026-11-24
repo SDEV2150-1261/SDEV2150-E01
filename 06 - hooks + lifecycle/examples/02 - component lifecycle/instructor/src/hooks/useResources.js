@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 
+const API_BASE_URL = 'http://localhost:3000'; // normally this would live in its own API file/layer too
+
+
 // I want to write a hook that fetches the resources data from the backend server, that I can populate my Results card with.
 // Because I'm side-effecting (talking to something outside the application), I use useEffect to make sure that behaviour only fires
 // when the component calling this hook has mounted into the DOM. This way, I make sure data that arrives has a place to be shown.
@@ -12,7 +15,29 @@ export function useResources() {
 
   // 2. i'm going to fetch the data from the API (normally, API functions would be in their own file/layer)
   async function fetchResources() {
+    // first thing to do when writing logic: "what does the initial condition need to be?"
+    // if I'm about to send a fetch, loading should become true, and error should become null (new fetch = any existing error msg is now stale / based on prev. fetch)
+    setIsLoading(true);
+    setError(null);
 
+    try {
+      const res = await fetch(`${API_BASE_URL}/resources`);
+
+      if (!res.ok) {
+        throw new Error(`Request failed: ${res.status} ${res.statusText}`);
+      }
+
+      // set the data received to local state
+      const data = await res.json();
+      setResources(data)
+    } catch (err) {
+      setError(err);
+    } finally {
+      // you're used to try-catch; the full form is try-catch-finally.
+      // anything in the finally block will at the very end regardless of what happens above
+      setIsLoading(false);
+    }
+  
   }
 
   // 3. we're going to call that fetch inside an effect, so it only happens after component has mounted
