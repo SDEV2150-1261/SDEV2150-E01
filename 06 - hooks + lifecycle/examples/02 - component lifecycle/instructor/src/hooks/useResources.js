@@ -41,6 +41,7 @@ export function useResources() {
   }
 
   // 3. we're going to call that fetch inside an effect, so it only happens after component has mounted
+  // (progress comment:) I don't need to do anything new to get the fetch to fire, because I already wired up the skeleton first
   useEffect(
     () => { fetchResources() }, // param 1: the callback function, "what should actually happen?". -> fetch the data
     []                          // param 2: the dependency array,  "when should it happen"         -> empty array ([]) means, only when page loads
