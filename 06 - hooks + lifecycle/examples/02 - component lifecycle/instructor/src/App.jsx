@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSelectedResource } from './hooks/useSelectedResource';
+import { useResources } from './hooks/useResources';
 
 import Header from './components/Header';
 import Filters from './components/Filters';
@@ -8,6 +9,8 @@ import Details from './components/Details';
 import PageLayout from './components/layout/PageLayout';
 
 function App() {
+
+  const { resources } = useResources();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [openNowOnly, setOpenNowOnly] = useState(false);
@@ -31,6 +34,7 @@ function App() {
       </aside>
       <section className="md:col-span-2 lg:col-span-1">
         <Results
+          resources={resources}
           selectedResource={selectedResource}
           onSelectResource={setSelectedResource}
           searchTerm={searchTerm}
